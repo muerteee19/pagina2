@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jesus Manuel MS</title>
+    <style>
+        /* Cambiar el fondo a un GIF */
+        .fondo {
+            background-image: url('imagen1.gif'); /* URL de tu archivo GIF */
+            background-size: cover; /* Asegura que el GIF cubra toda la pantalla */
+            background-repeat: no-repeat; /* Evita la repetición del GIF */
+            background-position: center center; /* Centrar el GIF */
+            height: 500vh; /* Asegura que el fondo cubra toda la altura de la ventana */
+            margin: 0;
+        }
+
+        .titulo, .titulo2, .titulo3, .titulo4 {
+            background-color: lightblue; /* Color azul claro */
+            padding: 20px;
+            border-radius: 20px;
+            font-family: Arial;
+            color: navy; /* Color azul marino */
+            width: 280px;
+            margin: 0 auto;
+        }
+
+        #contenido {
+            background-color: rgba(0, 0, 255, 0.8); /* Color azul semi-transparente */
+            padding: 10px;
+            border-radius: 10px;
+            font-family: Arial;
+            color: black;
+            font-size: 20px;
+            text-align: left;
+        }
+
+        .lista1, .lista2, .lista3 {
+            background-color: rgba(0, 0, 255, 0.8); /* Color azul semi-transparente */
+            padding: 30px;
+            border-radius: 15px;
+            width: 280px;
+            font-family: Arial;
+            color: black;
+            margin: 20px auto;
+        }
+
+        .columnas {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 20px;
+            justify-items: center;
+            align-items: start;
+        }
+
+        .containerimg {
+            display: inline-flex;
+            margin: 35px;
+        }
+
+        .boximg {
+            width: 400px;
+            height: 350px;
+            margin: 50px;
+            border: 10px solid #EFCC00;
+            border-radius: 10px;
+        }
+
+        .selection {
+            transition: transform 0.3s;
+        }
+
+        .selection:hover {
+            transform: scale(1.2);
+            border: 10px solid #3b83bd;
+            border-radius: 10px;
+        }
+
+        /* Estilos para el modal (ventana de bienvenida) */
+        .modal {
+            display: none; /* Oculto por defecto */
+            position: fixed; /* Posición fija */
+            z-index: 1; /* Asegura que esté por encima de todo */
+            left: 0;
+            top: 0;
+            width: 100%; /* Ancho completo */
+            height: 100%; /* Altura completa */
+            background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro semi-transparente */
+            display: flex; /* Usamos flexbox para centrar */
+            justify-content: center; /* Centrar horizontalmente */
+            align-items: center; /* Centrar verticalmente */
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 40px;
+            border: 1px solid #888;
+            width: 60%; /* Ajusta el ancho de la ventana de contenido */
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover, .close:focus {
+            color: blue;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body class="fondo">
+    <!-- Ventana de Bienvenida que cubre toda la pantalla -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+               <img src="saludo.gif" alt="Bienvenida GIF" width="500" height="500">
+            <h2>¡Bienvenido a la página de prueba de Cloud Computing!</h2>
+            <p>Explora las características y ventajas de la computación en la nube
+
+La computación en la nube ha revolucionado la manera en que almacenamos, accedemos y gestionamos nuestra información. Este blog informativo compila varias fuentes para ofrecerte una visión completa sobre este tema.</p>
+        </div>
+    </div>
+
+    <center>
+          <img src="https://pbs.twimg.com/media/GXNr5WNX0AAk5Ra?format=png&name=large" alt="Logo" width="250" height="250"> <!-- Ajusta el tamaño de la imagen -->
+    
+        <h1 class="titulo">Cloud Computing</h1>
+    </center>
+  <p id="contenido">
+       La computación en la nube ha transformado radicalmente la manera en que interactuamos con la tecnología y almacenamos datos. Este paradigma tecnológico permite la prestación de servicios informáticos a través de Internet, eliminando la necesidad de infraestructura física local. Entre los servicios ofrecidos se incluyen servidores, almacenamiento, bases de datos, redes, software y análisis, todos accesibles desde cualquier lugar con una conexión a Internet. Esta flexibilidad y accesibilidad han hecho que la computación en la nube sea una herramienta esencial para empresas y usuarios individuales, facilitando la innovación y la eficiencia operativa.
+    </p>
+  
+    <div class="columnas">
+        <div>
+            <center>
+                <h3 class="titulo2">Características:</h3>
+            </center>
+            <ul class="lista1">
+                <li>Accesibilidad: Puedes acceder a los recursos desde cualquier lugar con conexión a Internet.</li>
+                <li>Escalabilidad: Permite ajustar los recursos según las necesidades, ya sea aumentando o disminuyendo la capacidad.</li>
+                <li>Pago por uso: Solo pagas por los recursos que utilizas.</li>
+                <li>Mantenimiento reducido: No necesitas preocuparte por el mantenimiento de la infraestructura física.</li>
+            </ul>
+        </div>
+        
+        <div>
+            <center>
+                <h3 class="titulo3">Ventajas:</h3>
+            </center>
+            <ul class="lista2">
+                <li>Costos reducidos: No es necesario invertir en hardware costoso.</li>
+                <li>Flexibilidad: Puedes adaptar los recursos según las demandas del negocio.</li>
+                <li>Colaboración mejorada: Facilita el trabajo en equipo al permitir el acceso compartido a los recursos.</li>
+                <li>Seguridad: Los proveedores de servicios en la nube suelen ofrecer medidas de seguridad avanzadas.</li>
+            </ul>
+        </div>
+
+        <div> 
+            <center>
+                <h3 class="titulo4">Datos curiosos de la computación en la nube</h3>
+            </center>
+            <ul class="lista3">
+                <li>Origen del término "nube": El término "nube" (cloud) se originó en la década de 1990.</li>
+                <li>Crecimiento exponencial: En 2023, el mercado de la computación en la nube se valoró en más de $500 mil millones de dólares.</li>
+                <li>Economía de escala: Los grandes proveedores de servicios en la nube, como AWS, Microsoft Azure y Google Cloud, tienen centros de datos tan eficientes que una pequeña empresa podría ahorrar hasta el 70% de los costos de infraestructura tecnológica al usar la nube.</li>
+            </ul>
+        </div>
+    </div>
+
+    <h3>*</h3>
+    <div class="containerimg">
+        <a href="https://youtu.be/nMfeITzWMuo?si=Y28-R5BqVgr5sutp" target="_blank">
+            <img src="https://pbs.twimg.com/media/F1Py59-XwAAxOjS?format=jpg&name=large" alt="Gestoría de Software" class="boximg selection">
+        </a>
+        <a href="https://www.youtube.com/watch?v=56s842xCrCo" target="_blank">
+            <img src="https://i.ytimg.com/vi/56s842xCrCo/maxresdefault.jpg" alt="Desarrollo" class="boximg selection">
+        </a>
+        <a href="https://www.youtube.com/watch?v=w_nxU2Y7_Ro" target="_blank">
+            <img src="https://blog.gs1mexico.org/hs-fs/hubfs/Blog/4%20Beneficios%20de%20la%20Nube%20para%20la%20informaci%C3%B3n%20de%20tu%20empresa/GS1_Industry4.0_Cloud_Computing_RGB_2016-11-28.jpg?width=650&name=GS1_Industry4.0_Cloud_Computing_RGB_2016-11-28.jpg" alt="Consultoría" class="boximg selection">
+        </a>
+    </div>
+
+    <!-- JavaScript para mostrar y cerrar la ventana modal -->
+    <script>
+        // Obtener el modal
+        var modal = document.getElementById("myModal");
+
+        // Mostrar el modal cuando la página se carga
+        window.onload = function() {
+            modal.style.display = "flex";
+        }
+
+        // Obtener el elemento <span> que cierra el modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // Cuando el usuario haga clic en <span> (x), cerrar el modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Cuando el usuario haga clic en cualquier lugar fuera del modal, cerrar el modal
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
