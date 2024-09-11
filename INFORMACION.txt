@@ -1,0 +1,34 @@
+------------------------------------------------------------------------------------------------------------------------------
+*Cloud Computing*
+
+La computación en la nube es la prestación de servicios informáticos a través de Internet.Estos servicios incluyen servidores, almacenamiento, bases de datos, redes, software y análisis
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Características:
+
+Accesibilidad: Puedes acceder a los recursos desde cualquier lugar con conexión a Internet.
+Escalabilidad: Permite ajustar los recursos según las necesidades, ya sea aumentando o disminuyendo la capacidad.
+Pago por uso: Solo pagas por los recursos que utilizas.
+Mantenimiento reducido: No necesitas preocuparte por el mantenimiento de la infraestructura física
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Ventajas:
+
+Costos reducidos: No es necesario invertir en hardware costoso.
+Flexibilidad: Puedes adaptar los recursos según las demandas del negocio.
+Colaboración mejorada: Facilita el trabajo en equipo al permitir el acceso compartido a los recursos.
+Seguridad: Los proveedores de servicios en la nube suelen ofrecer medidas de seguridad avanzadas.
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Desventajas:
+
+Dependencia de Internet: Necesitas una conexión estable para acceder a los servicios.
+Privacidad: Existe el riesgo de que los datos sean accesibles a terceros.
+Control limitado: Dependiendo del proveedor, puedes tener menos control sobre la infraestructura
+
+-------------------------------------------------------------------------------------------------------------------------------
+Cloud Computing
+
