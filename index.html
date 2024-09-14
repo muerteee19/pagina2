@@ -1,214 +1,318 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Jesus Manuel MS</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Computing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Cambiar el fondo a un GIF */
-        .fondo {
-            background-image: url('imagen1.gif'); /* URL de tu archivo GIF */
-            background-size: cover; /* Asegura que el GIF cubra toda la pantalla */
-            background-repeat: no-repeat; /* Evita la repetición del GIF */
-            background-position: center center; /* Centrar el GIF */
-            height: 500vh; /* Asegura que el fondo cubra toda la altura de la ventana */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-image: url('imagen1.gif');
+            background-size: cover;
+            background-attachment: fixed;
             margin: 0;
+            padding: 0;
+            color: #333;
         }
 
-        .titulo, .titulo2, .titulo3, .titulo4 {
-            background-color: lightblue; /* Color azul claro */
-            padding: 20px;
+        /* Ocultar la bienvenida después de 3 segundos */
+        #welcomeModal {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #welcomeModal img {
+            width: 300px;
+            height: auto;
+            animation: fadeOut 3s forwards;
+        }
+
+        /* Animación para la ventana de bienvenida */
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; visibility: hidden; }
+        }
+
+        /* Barra de navegación */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(51, 51, 51, 0.9); /* Fondo semi-transparente */
+            padding: 15px 30px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav img {
+            height: 50px;
+        }
+
+        nav a {
+            color: aliceblue;
+            padding: 10px 20px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
             border-radius: 20px;
-            font-family: Arial;
-            color: navy; /* Color azul marino */
-            width: 280px;
-            margin: 0 auto;
+            transition: background-color 0.3s ease;
         }
 
-        #contenido {
-            background-color: rgba(0, 0, 255, 0.8); /* Color azul semi-transparente */
-            padding: 10px;
-            border-radius: 10px;
-            font-family: Arial;
-            color: black;
-            font-size: 20px;
-            text-align: left;
+        nav a:hover {
+            background-color: #575757;
         }
 
-        .lista1, .lista2, .lista3 {
-            background-color: rgba(0, 0, 255, 0.8); /* Color azul semi-transparente */
+        /* Secciones de contenido */
+        .section {
+            display: none;
+            padding: 120px 20px 20px;
+            margin: 20px;
+            background-color: #f7f7f7;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            max-height: 100vh;
+            overflow-y: auto;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .section p, .section ul {
+            font-size: 1.1em;
+            line-height: 1.6em;
+        }
+
+        #section1 {
+            display: flex;
+            justify-content: space-between;
+            background-color: #ffffff;
             padding: 30px;
             border-radius: 15px;
-            width: 280px;
-            font-family: Arial;
-            color: black;
-            margin: 20px auto;
         }
 
-        .columnas {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-gap: 20px;
-            justify-items: center;
-            align-items: start;
+        #section1 div {
+            width: 48%;
         }
 
-        .containerimg {
-            display: inline-flex;
-            margin: 35px;
-        }
-
-        .boximg {
-            width: 400px;
-            height: 350px;
-            margin: 50px;
-            border: 10px solid #EFCC00;
+        .section img {
+            width: 100%;
+            height: auto;
             border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .selection {
-            transition: transform 0.3s;
+        /* Estilo para el contenedor de videos */
+        .video-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
         }
 
-        .selection:hover {
-            transform: scale(1.2);
-            border: 10px solid #3b83bd;
+        .video-container iframe {
+            width: 80%;
+            height: 450px;
+            border: none;
             border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
 
-        /* Estilos para el modal (ventana de bienvenida) */
-        .modal {
-            display: none; /* Oculto por defecto */
-            position: fixed; /* Posición fija */
-            z-index: 1; /* Asegura que esté por encima de todo */
-            left: 0;
-            top: 0;
-            width: 100%; /* Ancho completo */
-            height: 100%; /* Altura completa */
-            background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro semi-transparente */
-            display: flex; /* Usamos flexbox para centrar */
-            justify-content: center; /* Centrar horizontalmente */
-            align-items: center; /* Centrar verticalmente */
+        .video-thumbnails {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
-        .modal-content {
-            background-color: white;
-            padding: 40px;
-            border: 1px solid #888;
-            width: 60%; /* Ajusta el ancho de la ventana de contenido */
+        .video-thumbnails img {
+            width: 150px;
             border-radius: 10px;
-            text-align: center;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover, .close:focus {
-            color: blue;
-            text-decoration: none;
             cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .video-thumbnails img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Estilo para los botones */
+        button {
+            background-color: #4CAF50;
+            color: aliceblue;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1.1em;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Mostrar solo la sección activa */
+        .active {
+            display: block;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+            }
+
+            #section1 {
+                flex-direction: column;
+            }
+
+            .video-thumbnails img {
+                width: 80%;
+            }
         }
     </style>
 </head>
+<body>
 
-<body class="fondo">
-    <!-- Ventana de Bienvenida que cubre toda la pantalla -->
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-               <img src="saludo.gif" alt="Bienvenida GIF" width="500" height="500">
-            <h2>¡Bienvenido a la página de prueba de Cloud Computing!</h2>
-            <p>Explora las características y ventajas de la computación en la nube
+    <!-- Ventana de bienvenida -->
+    <div id="welcomeModal">
+        <img src="saludo.gif" alt="Bienvenida"width="500" height="300">>
+        <h2>¡Bienvenido a la página de prueba de Cloud Computing!</h2>
+            <p>Explora las características y ventajas de la computación en la nube.
 
-La computación en la nube ha revolucionado la manera en que almacenamos, accedemos y gestionamos nuestra información. Este blog informativo compila varias fuentes para ofrecerte una visión completa sobre este tema.</p>
-        </div>
+                La computación en la nube ha revolucionado la manera en que almacenamos, accedemos y gestionamos nuestra información. Este blog informativo compila varias fuentes para ofrecerte una visión completa sobre este tema.</p>
     </div>
 
-    <center>
-          <img src="https://pbs.twimg.com/media/GXNr5WNX0AAk5Ra?format=png&name=large" alt="Logo" width="250" height="250"> <!-- Ajusta el tamaño de la imagen -->
-    
-        <h1 class="titulo">Cloud Computing</h1>
-    </center>
-  <p id="contenido">
-       La computación en la nube ha transformado radicalmente la manera en que interactuamos con la tecnología y almacenamos datos. Este paradigma tecnológico permite la prestación de servicios informáticos a través de Internet, eliminando la necesidad de infraestructura física local. Entre los servicios ofrecidos se incluyen servidores, almacenamiento, bases de datos, redes, software y análisis, todos accesibles desde cualquier lugar con una conexión a Internet. Esta flexibilidad y accesibilidad han hecho que la computación en la nube sea una herramienta esencial para empresas y usuarios individuales, facilitando la innovación y la eficiencia operativa.
-    </p>
-  
-    <div class="columnas">
+    <!-- Barra de navegación -->
+    <nav>
+        <img src="logo.png" alt="Logo">
         <div>
-            <center>
-                <h3 class="titulo2">Características:</h3>
-            </center>
-            <ul class="lista1">
-                <li>Accesibilidad: Puedes acceder a los recursos desde cualquier lugar con conexión a Internet.</li>
-                <li>Escalabilidad: Permite ajustar los recursos según las necesidades, ya sea aumentando o disminuyendo la capacidad.</li>
-                <li>Pago por uso: Solo pagas por los recursos que utilizas.</li>
-                <li>Mantenimiento reducido: No necesitas preocuparte por el mantenimiento de la infraestructura física.</li>
-            </ul>
+            <a href="#" onclick="showSection('section1')">principal</a>
+            <a href="#" onclick="showSection('section2')">caracteristicas y categorias </a>
+            <a href="#" onclick="showSection('section3')">ventajas y desventejas </a>
+            <a href="#" onclick="showSection('section4')">videos informativos</a>
         </div>
-        
+    </nav>
+
+    <!-- Sección 1 -->
+    <section id="section1" class="section active">
         <div>
-            <center>
-                <h3 class="titulo3">Ventajas:</h3>
-            </center>
-            <ul class="lista2">
-                <li>Costos reducidos: No es necesario invertir en hardware costoso.</li>
-                <li>Flexibilidad: Puedes adaptar los recursos según las demandas del negocio.</li>
-                <li>Colaboración mejorada: Facilita el trabajo en equipo al permitir el acceso compartido a los recursos.</li>
-                <li>Seguridad: Los proveedores de servicios en la nube suelen ofrecer medidas de seguridad avanzadas.</li>
-            </ul>
+            <h2>Cloud Computing</h2>
+            <p>La computación en la nube ha transformado radicalmente la manera en que interactuamos con la tecnología y almacenamos datos. Este paradigma tecnológico permite la prestación de servicios informáticos a través de Internet, eliminando la necesidad de infraestructura física local. Entre los servicios ofrecidos se incluyen servidores, almacenamiento, bases de datos, redes, software y análisis, todos accesibles desde cualquier lugar con una conexión a Internet.</p>
         </div>
-
-        <div> 
-            <center>
-                <h3 class="titulo4">Datos curiosos de la computación en la nube</h3>
-            </center>
-            <ul class="lista3">
-                <li>Origen del término "nube": El término "nube" (cloud) se originó en la década de 1990.</li>
-                <li>Crecimiento exponencial: En 2023, el mercado de la computación en la nube se valoró en más de $500 mil millones de dólares.</li>
-                <li>Economía de escala: Los grandes proveedores de servicios en la nube, como AWS, Microsoft Azure y Google Cloud, tienen centros de datos tan eficientes que una pequeña empresa podría ahorrar hasta el 70% de los costos de infraestructura tecnológica al usar la nube.</li>
-            </ul>
+        <div>
+            <img src="image2.png" alt="imagen2"width="100" height="100">>
         </div>
-    </div>
+    </section>
 
-    <h3>*</h3>
-    <div class="containerimg">
-        <a href="https://youtu.be/nMfeITzWMuo?si=Y28-R5BqVgr5sutp" target="_blank">
-            <img src="https://pbs.twimg.com/media/F1Py59-XwAAxOjS?format=jpg&name=large" alt="Gestoría de Software" class="boximg selection">
-        </a>
-        <a href="https://www.youtube.com/watch?v=56s842xCrCo" target="_blank">
-            <img src="https://i.ytimg.com/vi/56s842xCrCo/maxresdefault.jpg" alt="Desarrollo" class="boximg selection">
-        </a>
-        <a href="https://www.youtube.com/watch?v=w_nxU2Y7_Ro" target="_blank">
-            <img src="https://blog.gs1mexico.org/hs-fs/hubfs/Blog/4%20Beneficios%20de%20la%20Nube%20para%20la%20informaci%C3%B3n%20de%20tu%20empresa/GS1_Industry4.0_Cloud_Computing_RGB_2016-11-28.jpg?width=650&name=GS1_Industry4.0_Cloud_Computing_RGB_2016-11-28.jpg" alt="Consultoría" class="boximg selection">
-        </a>
-    </div>
+    <!-- Sección 2 -->
+    <section id="section2" class="section">
+        <h2>Características del Cloud Computing</h2>
+        <ul>
+            <li>Accesibilidad : •   Accesibilidad: Puedes acceder a los recursos desde cualquier lugar con conexión a Internet.</li>
+            <li>Escalabilidad : •  Permite ajustar los recursos según las necesidades, ya sea aumentando o disminuyendo la capacidad.</li>
+            <li>Pago por uso: •  Solo pagas por los recursos que utilizas.</li>
+        </ul>
+        <h3>Categorías del Cloud Computing</h3>
+        <p>SaaS, PaaS, IaaS</p>
+        <ul>
+            <li>SaaS : • :Software como Servicio de computación en la nube se centra en simplificar el acceso a la aplicación de software para el usuario a través de una interfaz de navegador o bien de programa. Con este modelo, la red latente, el sistema operacional y los recursos marchan entre bastidores. Esta es una aplicación muy usual en la computación en la nube: se calcula que el 59% del total de las cargas de trabajo en la nube ha sido de Software as a Service hasta 2018.</li>
+            <li>PaaS : •  Este sistema facilita la construcción de aplicaciones a través de las herramientas y utilidades que ofrece dicho sistema. Este modelo puede aprovechar las ventajas de la computación en la nube mientras que sostiene la libertad de desarrollar aplicaciones adaptadas del software. Los usuarios pueden acceder a PaaS de igual modo que se hace con el Software as a Service. El distribuidor es responsable por el mantenimiento del sistema operacional, de la red, de los servidores y de la seguridad.</li>
+            <li>IaaS: •  La empresa tiene el control absoluto sobre la nube, por lo tanto, deberá configurar las máquinas, elegir la capacidad de memoria y procesador. Es la solución más personalizada y a medida de la empresa, ya que solamente contrata la capacidad de almacenamiento y el proceso en bruto. Va un paso adelante en la abstracción, proporcionándoles a las organizaciones la capacidad de aprovechar recursos del servidor mientras que el sobrante de la administración de la plataforma y del software es de responsabilidad de la compañía. Eso deja mayor capacidad sin preocupación con requisitos de hardware.</li>
+        </ul>
+    </section>
 
-    <!-- JavaScript para mostrar y cerrar la ventana modal -->
+    <!-- Sección 3 -->
+    <section id="section3" class="section">
+        <h2>Ventajas y Desventajas</h2>
+        <h3>Ventajas</h3>
+        <ul>
+            <li>•   Flexibilidad y Escalabilidad: Los servicios basados en la nube pueden atender una demanda mayor de forma instantánea, y es adecuado para todo tipo de empresas.
+                <li>
+•   Restauración: Los distribuidores de Cloud Computing manejan los inconvenientes de restauración de una forma más eficiente.</li>
+<li>
+•   Actualizaciones automáticas de software: Los distribuidores de Cloud Computing son responsables del mantenimiento del servidor y todo su software, incluyendo actualizaciones de seguridad.</li>
+<li>
+•   Multisedes y multilocalización: Los empleados solo precisan tener acceso a Internet para trabajar desde cualquier sitio.</li>
+<li>
+•   Trabajo Colaborativo: Todos y cada uno de los empleados pueden compartir aplicaciones.</li>
+<li>
+•   Seguridad: Los datos guardados en la nube pueden ser accedidos desde cualquier sitio, con independencia de la pérdida de uno o bien más dispositivos.</li>
+<li>
+•   Sostenibilidad y Ecología: La computación en la nube emplea solo el espacio preciso en el servidor, reduciendo el uso de materiales redundantes.</li>
+<li>
+•   Industria 4.0: Cloud Computing es una de las tecnologías clave en las que se basa la Industria 4.0, la cuarta revolución industrial, que permite la completa digitalización de los procesos, y el análisis de la información para los cambios para la toma de decisiones a nival de empresa
+</li>
+        </ul>
+        <h3>Desventajas</h3>
+        <ul>
+            <li>•   Dependencia de la conexión a Internet: Para acceder a los servicios en la nube, necesitas una conexión a Internet estable. Si la conexión es lenta o se interrumpe, puede afectar tu capacidad para trabajar.</li>
+                 <li>
+•   Riesgos de seguridad y privacidad: Almacenar datos en la nube implica confiar en un proveedor externo. Existe el riesgo de que la información sensible sea accesible a hackers o se vea comprometida por fallos de seguridad.</li>
+ <li>
+•   Costos imprevistos: Aunque el modelo de pago por uso puede ser económico, los costos pueden aumentar rápidamente si no se gestionan adecuadamente los recursos utilizados.</li>
+ <li>
+•   Menor control sobre la infraestructura: Al utilizar servicios en la nube, tienes menos control sobre la infraestructura subyacente. Esto puede ser un problema si necesitas personalizar o ajustar configuraciones específicas.</li>
+ <li>
+•   Tiempo de inactividad: Los proveedores de servicios en la nube pueden experimentar interrupciones o tiempos de inactividad, lo que puede afectar la disponibilidad de tus aplicaciones y datos.</li>
+ <li>
+•   Problemas de compatibilidad: Integrar aplicaciones y sistemas existentes con servicios en la nube puede ser complejo y requerir ajustes significativos
+</li>
+        </ul>
+    </section>
+
+    <!-- Sección 4 -->
+    <section id="section4" class="section">
+        <h2>Videos Informativos</h2>
+        <div class="video-container">
+            <iframe id="videoPlayer" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <div class="video-thumbnails">
+                <img src="https://pbs.twimg.com/media/F1Py59-XwAAxOjS?format=jpg&name=large" alt="Gestoría de Software" onclick="playVideo('https://www.youtube.com/embed/nMfeITzWMuo')">
+                <img src="https://i.ytimg.com/vi/56s842xCrCo/maxresdefault.jpg" alt="Desarrollo" onclick="playVideo('https://www.youtube.com/embed/56s842xCrCo')">
+                <img src="https://blog.gs1mexico.org/hs-fs/hubfs/Blog/4%20Beneficios%20de%20la%20Nube%20para%20la%20informaci%C3%B3n%20de%20tu%20empresa/GS1_Industry4.0_Cloud_Computing_RGB_2016-11-28.jpg?width=650" alt="Consultoría" onclick="playVideo('https://www.youtube.com/embed/w_nxU2Y7_Ro')">
+            </div>
+        </div>
+    </section>
+
     <script>
-        // Obtener el modal
-        var modal = document.getElementById("myModal");
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.remove('active'));
 
-        // Mostrar el modal cuando la página se carga
-        window.onload = function() {
-            modal.style.display = "flex";
+            const selectedSection = document.getElementById(sectionId);
+            selectedSection.classList.add('active');
         }
 
-        // Obtener el elemento <span> que cierra el modal
-        var span = document.getElementsByClassName("close")[0];
-
-        // Cuando el usuario haga clic en <span> (x), cerrar el modal
-        span.onclick = function() {
-            modal.style.display = "none";
+        function playVideo(videoUrl) {
+            const videoPlayer = document.getElementById('videoPlayer');
+            videoPlayer.src = videoUrl;
         }
 
-        // Cuando el usuario haga clic en cualquier lugar fuera del modal, cerrar el modal
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
+        // Ocultar ventana de bienvenida después de 3 segundos
+        setTimeout(() => {
+            document.getElementById('welcomeModal').style.display = 'none';
+        }, 3000);
     </script>
+
 </body>
 </html>
